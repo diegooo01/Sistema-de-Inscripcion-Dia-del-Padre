@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: inscripciones-db
+    environment:
+      POSTGRES_DB: inscripciones
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d inscripciones"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mock-colegiados:
+    build: ./mock-colegiados
+    container_name: inscripciones-mock
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
