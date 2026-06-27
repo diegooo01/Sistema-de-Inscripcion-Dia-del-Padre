@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Administración</title>
+</head>
+<body>
+<h1>Dashboard de Control</h1>
+
+<h2>Métricas</h2>
+<ul>
+    <li>Total de solicitudes: <span th:text="${total}">0</span></li>
+    <li>Aprobados: <span th:text="${aprobados}">0</span></li>
+    <li>Rechazados: <span th:text="${rechazados}">0</span></li>
+    <li>Pendientes: <span th:text="${pendientes}">0</span></li>
+</ul>
+
+<h2>Solicitudes pendientes</h2>
+<table border="1" cellpadding="6">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Imagen DNI menor</th>
+        <th>Fecha de registro</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="i : ${inscripcionesPendientes}">
+        <td th:text="${i.id}"></td>
+        <td th:text="${i.dni}"></td>
+        <td th:text="${i.nombre}"></td>
+        <td th:text="${i.imagenDniMenor}"></td>
+        <td th:text="${i.fechaRegistro}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
