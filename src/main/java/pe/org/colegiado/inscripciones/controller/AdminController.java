@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.org.colegiado.inscripciones.model.Estado;
 import pe.org.colegiado.inscripciones.repository.InscripcionRepository;
 import pe.org.colegiado.inscripciones.service.InscripcionService;
@@ -32,8 +33,13 @@ public class AdminController {
     }
 
     @PostMapping("/dashboard/aprobar/{id}")
-    public String aprobar(@PathVariable Long id) {
-        inscripcionService.aprobarInscripcion(id);
+    public String aprobar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            inscripcionService.aprobarInscripcion(id);
+            redirectAttributes.addFlashAttribute("mensaje", "Inscripción aprobada correctamente");
+        } catch (IllegalStateException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
         return "redirect:/dashboard";
     }
 }

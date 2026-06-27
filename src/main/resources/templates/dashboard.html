@@ -7,6 +7,9 @@
 <body>
 <h1>Dashboard de Control</h1>
 
+<p th:if="${mensaje}" th:text="${mensaje}" style="color: green;"></p>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
 <h2>Métricas</h2>
 <ul>
     <li>Total de solicitudes: <span th:text="${total}">0</span></li>
