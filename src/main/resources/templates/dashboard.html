@@ -33,6 +33,11 @@
         <td th:text="${i.nombre}"></td>
         <td th:text="${i.imagenDniMenor}"></td>
         <td th:text="${i.fechaRegistro}"></td>
+        <td>
+            <form th:action="@{/dashboard/aprobar/{id}(id=${i.id})}" method="post">
+                <button type="submit">Aprobar</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
