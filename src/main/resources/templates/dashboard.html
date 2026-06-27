@@ -40,6 +40,10 @@
             <form th:action="@{/dashboard/aprobar/{id}(id=${i.id})}" method="post">
                 <button type="submit">Aprobar</button>
             </form>
+            <form th:action="@{/dashboard/rechazar/{id}(id=${i.id})}" method="post">
+                <input type="text" name="observacion" placeholder="Motivo del rechazo" required>
+                <button type="submit">Rechazar</button>
+            </form>
         </td>
     </tr>
     </tbody>

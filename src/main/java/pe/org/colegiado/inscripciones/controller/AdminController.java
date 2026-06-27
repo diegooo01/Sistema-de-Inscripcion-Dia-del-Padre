@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.org.colegiado.inscripciones.model.Estado;
 import pe.org.colegiado.inscripciones.repository.InscripcionRepository;
@@ -40,6 +41,15 @@ public class AdminController {
         } catch (IllegalStateException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/dashboard/rechazar/{id}")
+    public String rechazar(@PathVariable Long id,
+                           @RequestParam String observacion,
+                           RedirectAttributes redirectAttributes) {
+        inscripcionService.rechazar(id, observacion);
+        redirectAttributes.addFlashAttribute("mensaje", "Inscripción rechazada correctamente");
         return "redirect:/dashboard";
     }
 }

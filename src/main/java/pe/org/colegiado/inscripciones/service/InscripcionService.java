@@ -65,4 +65,17 @@ public class InscripcionService {
 
         log.info("Inscripción aprobada con id {} (DNI {})", inscripcion.getId(), inscripcion.getDni());
     }
+
+    @Transactional
+    public void rechazar(Long id, String observacion) {
+        Inscripcion inscripcion = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Inscripción no encontrada: " + id));
+
+        inscripcion.setEstado(Estado.RECHAZADO);
+        inscripcion.setObservacion(observacion);
+        repository.save(inscripcion);
+
+        log.warn("Inscripción rechazada con id {} (DNI {}), motivo: {}",
+                inscripcion.getId(), inscripcion.getDni(), observacion);
+    }
 }
