@@ -6,7 +6,7 @@ import pe.org.colegiado.inscripciones.dto.ColegiadoDto;
 import java.util.Optional;
 
 @Service
-public class ValidadorElegibilidad {
+public class ValidadorService {
 
     public ResultadoValidacion validacion(Optional<ColegiadoDto> colegiadoOpt) {
         if (colegiadoOpt.isEmpty()) {

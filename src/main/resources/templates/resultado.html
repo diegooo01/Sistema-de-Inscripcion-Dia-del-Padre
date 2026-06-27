@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de la inscripción</title>
+</head>
+<body>
+<h1>Resultado de la inscripción</h1>
+
+<p th:if="${exito}" th:text="${exito}" style="color: green;"></p>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+<a href="/inscripcion">← Volver al formulario</a>
+</body>
+</html>
