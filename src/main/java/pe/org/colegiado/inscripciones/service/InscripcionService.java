@@ -78,4 +78,9 @@ public class InscripcionService {
         log.warn("Inscripción rechazada con id {} (DNI {}), motivo: {}",
                 inscripcion.getId(), inscripcion.getDni(), observacion);
     }
+
+    public boolean aforoLleno() {
+        long aprobadas = repository.countByEstado(Estado.APROBADO);
+        return aprobadas >= aforo;
+    }
 }

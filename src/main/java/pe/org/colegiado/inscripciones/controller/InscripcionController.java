@@ -31,7 +31,11 @@ public class InscripcionController {
     }
 
     @GetMapping("/inscripcion")
-    public String mostrarInscripcion() {
+    public String mostrarInscripcion(Model model) {
+        if (inscripcionService.aforoLleno()) {
+            model.addAttribute("error", "El evento ha alcanzado su aforo maximo. No se aceptan mas inscripciones.");
+            return "resultado";
+        }
         return "inscripcion";
     }
 
